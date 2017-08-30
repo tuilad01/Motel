@@ -20,8 +20,8 @@ router.get('/', function (req, res, next) {
       then((data) => {
         res.render("index", {
           title: "Motel",
-          categorys: data[0],
-          pays: data[1],
+          categorys: data[0] ? data[0] : [new Category()],
+          pays: data[1] ? data[1] : [new Pay()],
           fund: data[2] ? data[2] : new Fund()
         });
       });
