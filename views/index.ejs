@@ -110,7 +110,7 @@
                   <%= i.Note %>
                 </td>
                 <td>
-                  <%= i.CreatedAt.toLocaleString() %>
+                  <%= new Date(i.CreatedAt.setHours(i.CreatedAt.getHours() + 7)).toLocaleString() %>
                 </td>
                 <td><a href="">Edit</a>,<a href="">Delete</a></td>
               </tr>
