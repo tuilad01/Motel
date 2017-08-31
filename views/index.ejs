@@ -26,7 +26,11 @@
     </div>
     <div class="row">
       <div class="col-md-12">Fund amount:
-        <%= fund.Amount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ</div>
+        <%= fund.Amount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
+          <i id="edit-fund" class="fa fa-pencil" aria-hidden="true"></i>
+      </div>
+
+
     </div>
 
     <div class="row">
@@ -108,7 +112,7 @@
                 <td>
                   <%= i.CreatedAt.toLocaleString() %>
                 </td>
-                  <td><a href="">Edit</a>,<a href="">Delete</a></td>
+                <td><a href="">Edit</a>,<a href="">Delete</a></td>
               </tr>
 
               <% }); %>
@@ -146,13 +150,42 @@
               <label for="DisplayOrder">DisplayOrder</label>
               <input type="text" class="form-control" name="DisplayOrder" id="DisplayOrder">
             </div>
-            <div class="form-group">            
-              <input type="checkbox" name="Active" id="Active" checked>  <label for="Active">Active</label>
+            <div class="form-group">
+              <input type="checkbox" name="Active" id="Active" checked> <label for="Active">Active</label>
             </div>
 
           </div>
           <div class="modal-footer">
             <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-fund-edit" class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit fund</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form action="/fundedit" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="FundAmount">Amount</label>
+              <input type="text" class="form-control" name="Amount" id="FundAmount">
+            </div>
+            <div class="form-group">
+              <label for="FundNote">Note</label>
+              <textarea name="Note" id="FundNote" cols="30" rows="3" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </form>
@@ -171,6 +204,9 @@
     $(document).ready(() => {
       $("#button-category-add").click(() => {
         $("#modal-category-add").modal("show");
+      });
+      $("#edit-fund").click(() => {
+         $("#modal-fund-edit").modal("show");
       });
     });
   </script>

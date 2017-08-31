@@ -48,6 +48,13 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+//fund
+router.post("/fundedit", (req, res) => {
+  new Fund(req.body).
+  save().
+  then(data => res.redirect("/"));
+});
+
 router.get("/install", (req, res) => {
   var fund = new Fund({
     Amount: 0
