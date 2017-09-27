@@ -16,21 +16,31 @@
 <body>
 
 
-  <div class="container">
+  <div class="container" style="padding: 50px">
     <div>
       Welcome home
       <a href="/logout">Logout</a>
       <p></p>
       <hr>
-      <a href="/pay/drinkwater">Nước vina</a>
+      <% categorys.map(i => { %>
+        <a href="/pay/paid?SystemName=<%=i.SystemName%>">
+          <%= i.Name %>
+        </a>
+        <% }); %>
     </div>
     <div class="row">
       <div class="col-md-12">Fund amount:
         <%= fund.Amount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
-          <i id="edit-fund" class="fa fa-pencil" aria-hidden="true"></i>
+          <i id="edit-fund" class="fa fa-pencil button-icon" aria-hidden="true"></i>
       </div>
 
 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        Chia tiền nhà
+        <i id="divide-motel" class="fa fa-calculator button-icon" aria-hidden="true"></i>
+      </div>
     </div>
 
     <div class="row">
@@ -192,6 +202,32 @@
       </div>
     </div>
   </div>
+  <div id="modal-divide-motel" class="modal fade">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Chia tiền nhà</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+         <form action="/pay/divide" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="Name">Số tiền còn lại</label>
+              <input type="text" class="form-control" name="Fund">
+            </div>           
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-primary">Divide</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -206,7 +242,11 @@
         $("#modal-category-add").modal("show");
       });
       $("#edit-fund").click(() => {
-         $("#modal-fund-edit").modal("show");
+        $("#modal-fund-edit").modal("show");
+      });
+
+      $("#divide-motel").click(() => {
+        $("#modal-divide-motel").modal("show");
       });
     });
   </script>
