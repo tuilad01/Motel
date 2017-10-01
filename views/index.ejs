@@ -43,94 +43,104 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <p>Category</p>
-        <button class="btn btn-default" id="button-category-add"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create</button>
-        <table class="table table-striped table-inverse table-responsive">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Tên</th>
-              <th>Tên hệ thống</th>
-              <th>Số tiền mặc định</th>
-              <th>Thứ tự</th>
-              <th>Kích hoạt</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% categorys.map((i,index) => { %>
-              <tr>
-                <th scope="row">
-                  <%= index++ %>
-                </th>
-                <td>
-                  <%= i.Name %>
-                </td>
-                <td>
-                  <%= i.SystemName %>
-                </td>
-                <td>
-                  <%= i.DefaultAmount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
-                </td>
-                <td>
-                  <%= i.DisplayOrder %>
-                </td>
-                <td>
-                  <% if(i.Active) { %>
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <% } %>
-                </td>
-                <td><a href="">Edit</a>,<a href="">Delete</a></td>
-              </tr>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detail-pay-category" aria-expanded="false"
+      aria-controls="detail-pay-category">
+    Detail pay
+  </button>
 
-              <% }); %>
+    <div class="collapse" id="detail-pay-category">
+      <div class="card card-block">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Category</p>
+            <button class="btn btn-default" id="button-category-add"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create</button>
+            <table class="table table-striped table-inverse table-responsive">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên</th>
+                  <th>Tên hệ thống</th>
+                  <th>Số tiền mặc định</th>
+                  <th>Thứ tự</th>
+                  <th>Kích hoạt</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% categorys.map((i,index) => { %>
+                  <tr>
+                    <th scope="row">
+                      <%= index++ %>
+                    </th>
+                    <td>
+                      <%= i.Name %>
+                    </td>
+                    <td>
+                      <%= i.SystemName %>
+                    </td>
+                    <td>
+                      <%= i.DefaultAmount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
+                    </td>
+                    <td>
+                      <%= i.DisplayOrder %>
+                    </td>
+                    <td>
+                      <% if(i.Active) { %>
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        <% } %>
+                    </td>
+                    <td><a href="">Edit</a>,<a href="">Delete</a></td>
+                  </tr>
 
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-6">
-        <p>Pay</p>
-        <button class="btn btn-default" id="button-pay-add"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create</button>
-        <table class="table table-striped table-inverse table-responsive">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Tên</th>
-              <th>Số tiền</th>
-              <th>Ghi chú</th>
-              <th>Ngày/giờ</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% pays.map((i,index) => { %>
-              <tr>
-                <th scope="row">
-                  <%= index++ %>
-                </th>
-                <td>
-                  <%= i.Name %>
-                </td>
-                <td>
-                  <%= i.Amount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
-                </td>
-                <td>
-                  <%= i.Note %>
-                </td>
-                <td>
-                  <%= new Date(i.CreatedAt.setHours(i.CreatedAt.getHours() + 7)).toLocaleString() %>
-                </td>
-                <td><a href="">Edit</a>,<a href="">Delete</a></td>
-              </tr>
+                  <% }); %>
 
-              <% }); %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <p>Pay</p>
+            <button class="btn btn-default" id="button-pay-add"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create</button>
+            <table class="table table-striped table-inverse table-responsive">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên</th>
+                  <th>Số tiền</th>
+                  <th>Ghi chú</th>
+                  <th>Ngày/giờ</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% pays.map((i,index) => { %>
+                  <tr>
+                    <th scope="row">
+                      <%= index++ %>
+                    </th>
+                    <td>
+                      <%= i.Name %>
+                    </td>
+                    <td>
+                      <%= i.Amount.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> VNĐ
+                    </td>
+                    <td>
+                      <%= i.Note %>
+                    </td>
+                    <td>
+                      <%= new Date(i.CreatedAt.setHours(i.CreatedAt.getHours() + 7)).toLocaleString() %>
+                    </td>
+                    <td><a href="">Edit</a>,<a href="">Delete</a></td>
+                  </tr>
 
-          </tbody>
-        </table>
+                  <% }); %>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
+
 
   </div>
   <div id="modal-category-add" class="modal">
@@ -211,12 +221,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-         <form action="/pay/divide" method="POST">
+        <form action="/pay/divide" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="Name">Số tiền còn lại</label>
               <input type="text" class="form-control" name="Fund">
-            </div>           
+            </div>
 
           </div>
           <div class="modal-footer">
@@ -227,6 +237,33 @@
       </div>
     </div>
   </div>
+<section class="pay-motel">
+  <div class="button-close-pay">
+    <a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+  </div>
+  <div class="container-pay">
+    <a class="box-pay" href="#">
+      <i class="icon-pay"></i>
+      Tiền nước
+    </a>
+    <a class="box-pay" href="#">
+     <i class="icon-pay"></i>
+      Tiền nước
+    </a>
+    <a class="box-pay" href="#">
+     <i class="icon-pay"></i>
+      Tiền nước
+    </a>
+    <a class="box-pay" href="#">
+     <i class="icon-pay"></i>
+      Tiền nước
+    </a>
+    <a class="box-pay" href="#">
+     <i class="icon-pay"></i>
+      Tiền nước
+    </a>
+  </div>
+</section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
